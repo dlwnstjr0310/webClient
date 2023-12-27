@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    additional-location: classpath:/application-key.yml
+  profiles:
+    active: refactor
+  application:
+    name: refactor
+  jackson:
+    date-format: 'yyyy-MM-dd'
+    time-zone: "Asia/Seoul"
