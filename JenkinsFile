@@ -33,8 +33,8 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh 'aws elasticbeanstalk create-application-version --region ap-northeast-2 --application-name Refactor --version-label ${BUILD_TAG} --source-bundle S3Bucket="elasticbeanstalk-ap-northeast-2-025736223629",S3Key="deploy/deploy.zip"'
-        sh 'aws elasticbeanstalk update-environment --region ap-northeast-2 --environment-name Refactor-env --version-label ${BUILD_TAG}'
+        sh 'aws elasticbeanstalk create-application-version --region ap-northeast-2 --application-name HRSV --version-label ${BUILD_TAG} --source-bundle S3Bucket="elasticbeanstalk-ap-northeast-2-025736223629",S3Key="deploy/deploy.zip"'
+        sh 'aws elasticbeanstalk update-environment --region ap-northeast-2 --environment-name HRSV-env --version-label ${BUILD_TAG}'
       }
     }
 
