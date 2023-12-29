@@ -12,8 +12,8 @@ pipeline {
         sh 'mkdir -p deploy'
         sh 'cp build/libs/refactor-api.jar deploy/refactor-api.jar'
         sh 'cp Procfile deploy/Procfile'
-        sh 'cp -r .ebextensions deploy/'
-        sh 'cp -r .platform deploy/'
+        sh 'cp -r .ebextensions/* deploy/.ebextensions'
+        sh 'cp -r .platform/* deploy/.platform'
         sh 'cd deploy && zip -r deploy.zip .'
       }
     }
