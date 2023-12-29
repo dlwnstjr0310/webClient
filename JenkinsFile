@@ -1,0 +1,42 @@
+pipeline {
+  agent any
+  stages {
+    stage('build') {
+      steps {
+        sh './gradlew clean build -x test'
+      }
+    }
+
+    stage('zip') {
+      steps {
+        sh 'mkdir -p deploy'
+        sh 'cp build/libs/refactor-api.jar deploy/refactor-api.jar'
+        sh 'cp Procfile deploy/Procfile'
+        sh 'cp -r .ebextensions deploy/.ebextensions'
+        sh 'cp -r .platform deploy/.platform'
+        sh 'cd deploy && zip -r deploy.zip .'
+      }
+    }
+
+    stage('upload') {
+      steps {
+        sh 'aws s3 cp deploy/deploy.zip s3://elasticbeanstalk-ap-northeast-2-025736223629/deploy/deploy.zip --region ap-northeast-2'
+      }
+    }
+
+    stage('download') {
+      steps {
+        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/certificatefile.crt ./etc/ssl/ --region ap-northeast-2'
+        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/private.key ./etc/ssl/ --region ap-northeast-2'
+        }
+    }
+
+    stage('deploy') {
+      steps {
+        sh 'aws elasticbeanstalk create-application-version --region ap-northeast-2 --application-name Refactor --version-label ${BUILD_TAG} --source-bundle S3Bucket="elasticbeanstalk-ap-northeast-2-025736223629",S3Key="deploy/deploy.zip"'
+        sh 'aws elasticbeanstalk update-environment --region ap-northeast-2 --environment-name Refactor-env --version-label ${BUILD_TAG}'
+      }
+    }
+
+  }
+}
