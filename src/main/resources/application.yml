@@ -2,8 +2,8 @@ server:
   port: 8080
 
 spring:
-  config:
-    import: classpath:/application-key.yml
+  #  config:
+  #    import: classpath:/application-key.yml
   profiles:
     active: refactor
   application:

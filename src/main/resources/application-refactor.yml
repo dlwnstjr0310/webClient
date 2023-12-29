@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: ${mysql.datasource.url}
+    url: ${MYSQL_DATASOURCE_URL}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${mysql.username}
-    password: ${mysql.password}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       pool-name: hikari-pool
@@ -36,8 +36,8 @@ spring:
   mail:
     host: smtp.naver.com
     port: 465
-    username: ${naver.username}
-    password: ${naver.password}
+    username: ${NAVER_USERNAME}
+    password: ${NAVER_PASSWORD}
     properties:
       mail.smtp.auth: true
       mail.smtp.ssl.enable: true
@@ -75,15 +75,15 @@ logging:
 
 security:
   pbkdf2:
-    salt: ${salt.key}
-    key-length: ${pbkdf2.key.length}
-    iteration-count: ${pbkdf2.iteration.count}
+    salt: ${SALT_KEY}
+    key-length: ${PBKDF2_KEY_LENGTH}
+    iteration-count: ${PBKDF2_ITERATION_COUNT}
 
 ---
 
 jwt:
-  secret: ${jwt.secret.key}
+  secret: ${JWT_SECRET_KEY}
 
 ---
 
-API_KEY: ${api.key}
+API_KEY: ${API_KEY}
