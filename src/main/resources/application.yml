@@ -8,3 +8,8 @@ spring:
   jackson:
     date-format: 'yyyy-MM-dd'
     time-zone: "Asia/Seoul"
+
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
