@@ -26,8 +26,8 @@ pipeline {
 
     stage('download') {
       steps {
-        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/certificatefile.crt ./etc/ssl/ --region ap-northeast-2'
-        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/private.key ./etc/ssl/ --region ap-northeast-2'
+        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/certificatefile.crt /etc/ssl/ --region ap-northeast-2'
+        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/private.key /etc/ssl/ --region ap-northeast-2'
         }
     }
 
