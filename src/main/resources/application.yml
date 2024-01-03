@@ -1,10 +1,8 @@
 spring:
-  #  config:
-  #    import: classpath:/application-key.yml
   profiles:
-    active: refactor
+    active: dev
   application:
-    name: refactor
+    name: HRSV
   jackson:
     date-format: 'yyyy-MM-dd'
     time-zone: "Asia/Seoul"

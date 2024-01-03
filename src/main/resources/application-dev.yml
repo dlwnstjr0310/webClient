@@ -86,4 +86,6 @@ jwt:
 
 ---
 
-API_KEY: ${api.key}
+hrd:
+  api:
+    key: ${api.key}

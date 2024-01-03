@@ -36,7 +36,7 @@ public class DBMigrationService {
 	private final ObjectMapper mapper;
 	private final CustomPasswordEncoder passwordEncoder;
 
-	@Value("${API_KEY}")
+	@Value("${hrd.api.key}")
 	private String API_KEY;
 
 	@Transactional
