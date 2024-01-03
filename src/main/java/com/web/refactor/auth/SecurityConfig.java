@@ -27,13 +27,12 @@ public class SecurityConfig {
 				.sessionManagement(session ->
 						session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				)
+				.cors(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(request ->
-						request.requestMatchers("/")
-								.authenticated()
-								.anyRequest()
-								.permitAll()
+						request.anyRequest().permitAll()
 				).exceptionHandling(exceptionHandling ->
-						exceptionHandling.accessDeniedHandler(jwtAccessDeniedHandler)
+						exceptionHandling
+								.accessDeniedHandler(jwtAccessDeniedHandler)
 								.authenticationEntryPoint(jwtAuthenticationEntryPoint)
 				)
 				.apply(new JwtSecurityConfig(tokenProvider));
