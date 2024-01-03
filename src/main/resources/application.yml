@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: classpath:/application-key.yml
   profiles:
     active: dev
   application:
