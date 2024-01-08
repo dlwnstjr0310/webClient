@@ -65,14 +65,4 @@ public class EmployeeRequest {
 		@Size(min = 8, max = 20)
 		String password;
 	}
-
-	@Getter
-	@Setter
-	@FieldDefaults(level = AccessLevel.PRIVATE)
-	@Schema(name = "Token 재발급 요청 객체")
-	public static class Token {
-
-		@NotNull
-		String refreshToken;
-	}
 }

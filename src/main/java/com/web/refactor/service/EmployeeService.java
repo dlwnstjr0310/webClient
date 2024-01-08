@@ -64,11 +64,9 @@ public class EmployeeService {
 	}
 
 	@Transactional(readOnly = true)
-	public String reissueAccessToken(String token) {
-		Employee employee = employeeRepository.findByRefreshToken(token)
-				.orElseThrow(NotFoundEmployeeException::new);
+	public void reissueAccessToken(Employee employee) {
 
-		return tokenProvider.generateToken(employee);
+		tokenProvider.generateToken(employee);
 	}
 
 	@Transactional(readOnly = true)

@@ -27,6 +27,7 @@ public class EmployeeController {
 
 	private final EmployeeService employeeService;
 
+	@PostMapping("/join")
 	@Operation(summary = "회원가입 요청", description = "사용자 회원가입 요청 API 입니다.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "회원가입 요청 성공", content = @Content(schema = @Schema(implementation = Response.class))),
@@ -35,7 +36,6 @@ public class EmployeeController {
 					2.이미 존재하는 계정 입니다.
 					""", content = @Content(schema = @Schema(implementation = Response.class)))
 	})
-	@PostMapping("/join")
 	public Response<Void> join(@Valid @RequestBody EmployeeRequest.Join request) {
 		employeeService.join(request);
 
@@ -66,7 +66,7 @@ public class EmployeeController {
 	@PreAuthorize("isAuthenticated()")
 	@Operation(summary = "로그아웃", description = "사용자 로그아웃 API 입니다.")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "로그아웃 성공", content = @Content(schema = @Schema(implementation = TokenResponseDTO.class))),
+			@ApiResponse(responseCode = "200", description = "로그아웃 성공", content = @Content(schema = @Schema(implementation = Response.class))),
 			@ApiResponse(responseCode = "404", description = "존재하지 않는 사용자입니다.", content = @Content(schema = @Schema(implementation = Response.class)))
 	})
 	public Response<TokenResponseDTO> logout(@AuthenticationPrincipal Employee employee) {
@@ -77,15 +77,16 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/token")
+	@PreAuthorize("isAuthenticated()")
 	@Operation(summary = "Token 재발급", description = "Login 시 제공된 RefreshToken 을 이용해 AccessToken 을 재발급 받는 API 입니다.")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "토큰 재발급 성공", content = @Content(schema = @Schema(implementation = TokenResponseDTO.class))),
+			@ApiResponse(responseCode = "200", description = "토큰 재발급 성공", content = @Content(schema = @Schema(implementation = Response.class))),
 			@ApiResponse(responseCode = "404", description = "존재하지 않는 사용자입니다.", content = @Content(schema = @Schema(implementation = Response.class)))
 	})
-	public Response<String> reissueAccessToken(@Valid @RequestBody EmployeeRequest.Token request) {
+	public Response<Void> reissueAccessToken(@AuthenticationPrincipal Employee employee) {
 
-		return Response.<String>builder()
-				.data(employeeService.reissueAccessToken(request.getRefreshToken()))
+		employeeService.reissueAccessToken(employee);
+		return Response.<Void>builder()
 				.build();
 	}
 
