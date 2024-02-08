@@ -73,14 +73,6 @@ logging:
 
 ---
 
-security:
-  pbkdf2:
-    salt: ${SALT_KEY}
-    key-length: ${PBKDF2_KEY_LENGTH}
-    iteration-count: ${PBKDF2_ITERATION_COUNT}
-
----
-
 jwt:
   secret: ${JWT_SECRET_KEY}
 

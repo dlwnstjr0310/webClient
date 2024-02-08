@@ -10,7 +10,7 @@ pipeline {
     stage('zip') {
       steps {
         sh 'mkdir -p deploy'
-        sh 'cp build/libs/refactor-api.jar deploy/refactor-api.jar'
+        sh 'cp build/libs/webClient-api.jar deploy/webClient-api.jar'
         sh 'cp Procfile deploy/Procfile'
         sh 'cp -r .ebextensions/* deploy/.ebextensions'
         sh 'cp -r .platform/* deploy/.platform'
