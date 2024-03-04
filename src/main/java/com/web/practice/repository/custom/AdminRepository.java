@@ -31,13 +31,13 @@ public class AdminRepository {
 		BooleanExpression toEqualsExpression = null;
 
 		if (keyword != null) {
-			toEqualsExpression = employee.employeeName.eq(keyword);
+			toEqualsExpression = employee.empName.eq(keyword);
 		}
 
 		JPAQuery<EmployeeResponse.Detail> memberList = queryFactory.select(
 						Projections.bean(EmployeeResponse.Detail.class,
 								employee.id.as("id"),
-								employee.employeeName.as("name"),
+								employee.empName.as("name"),
 								employee.phone.as("phone"),
 								employee.email.as("email"),
 								employee.account.as("account"),
