@@ -20,14 +20,14 @@ pipeline {
 
     stage('upload') {
       steps {
-        sh 'aws s3 cp deploy/deploy.zip s3://elasticbeanstalk-ap-northeast-2-025736223629/deploy/deploy.zip --region ap-northeast-2 --profile refactor'
+        sh 'aws s3 cp deploy/deploy.zip s3://elasticbeanstalk-ap-northeast-2-025736223629/deploy/deploy.zip --region ap-northeast-2'
       }
     }
 
     stage('download') {
       steps {
-        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/certificatefile.crt /etc/ssl/ --region ap-northeast-2 --profile refactor'
-        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/private.key /etc/ssl/ --region ap-northeast-2 --profile refactor'
+        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/certificatefile.crt /etc/ssl/ --region ap-northeast-2'
+        sh 'aws s3 cp s3://elasticbeanstalk-ap-northeast-2-025736223629/private.key /etc/ssl/ --region ap-northeast-2'
         }
     }
 
