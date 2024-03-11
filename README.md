@@ -13,6 +13,7 @@
 - `MySQL`
 ### Swagger URL
 - [https://hrs.o-r.kr](https://hrs.o-r.kr)
+* RDS 의 정책 변화로 인해 퍼블릭 액세스를 불가능 하도록 설정해두었습니다. 이에 따라 API 테스트는 불가능합니다!
 
 # 기능
 - 데이터 가져오기
