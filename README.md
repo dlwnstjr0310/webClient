@@ -12,7 +12,7 @@
 ### DB
 - `MySQL`
 ### Swagger URL
-- [https://hrs.n-e.kr](https://hrs.n-e.kr)
+- [https://hrs.o-r.kr](https://hrs.o-r.kr)
 
 # 기능
 - 데이터 가져오기
